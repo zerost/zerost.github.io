@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{odGf:function(t,e,n){"use strict";n.r(e);var s={metaInfo:{title:"About us"}},u=n("KHd+"),i=Object(u.a)(s,(function(){var t=this.$createElement,e=this._self._c||t;return e("Layout",[e("h1",[this._v("개발자")]),e("div",[this._v("업데이트 계속 진행 예정..")])])}),[],!1,null,null,null);e.default=i.exports}}]);
