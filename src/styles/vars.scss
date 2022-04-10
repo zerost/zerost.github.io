@@ -1,0 +1,20 @@
+:root {
+    --cm-primay: #6200EE;
+    --cm-primary-variant: #3700B3;
+    --cm-secondary: #03DAC6;
+    --cm-secondary-variant: #018786;
+    --cm-background: #fff;
+    --cm-surface: #fff;
+    --cm-error: #b00020;
+    --cm-on-primay: #fff;
+    --cm-on-secondary: #000;
+    --cm-on-background: #000;
+    --cm-on-surface: #000;
+    --cm-on-error: #fff;
+    --cm-font-color: rgba(0, 0, 0, .8);
+
+    // transition vars
+    --ts-color: 0.3s ease;
+    --ts-transform: 0.3s ease;
+}
+
