@@ -16,26 +16,51 @@ module.exports = function (api) {
 
   api.createPages(async ({ graphql, createPage }) => {
     const { data } = await graphql(`{
-      allMarkdownPost {
+      allMarkdownPost(sort: [{ by: "category", order: ASC }, {by: "date", order: DESC}]) {
         edges {
           node {
             id
+            category
+            date
             title
           }
         }
       }
     }`)
 
-    const idList = []
+    const map = new Map()
+    /**
+     * Database { 
+     *  __chilren__: [ Postgresql ] 
+     * }
+     * 
+     */
+
+
     data.allMarkdownPost.edges.forEach(({ node }) => {
-      idList.push(node.id)
+      console.log(node)
+      console.log(node.category)
+
+      let key = ''
+      node.category.forEach((s) => {
+        key = key + '/' + s
+        if (!map.has(key)) {
+          map.set(key, { name: s, postId: [] })  
+        }
+        map.get(key).postId.push(node.id)
+      })
     })
-    createPage({
-      path: `/myindex`,
-      component: './src/templates/index.vue',
-      context: {
-        idList
-      }
-    })
+    console.log(map)
+  //   const idList = []
+  //   data.allMarkdownPost.edges.forEach(({ node }) => {
+  //     idList.push(node.id)
+  //   })
+  //   createPage({
+  //     path: `/myindex`,
+  //     component: './src/templates/index.vue',
+  //     context: {
+  //       idList
+  //     }
+  //   })
   })
 }
