@@ -23,44 +23,42 @@ module.exports = function (api) {
             category
             date
             title
+            lang
+            content
           }
         }
       }
     }`)
 
     const map = new Map()
-    /**
-     * Database { 
-     *  __chilren__: [ Postgresql ] 
-     * }
-     * 
-     */
-
-
     data.allMarkdownPost.edges.forEach(({ node }) => {
-      console.log(node)
-      console.log(node.category)
-
-      let key = ''
+      let key = `/${node.lang}/posts`
       node.category.forEach((s) => {
         key = key + '/' + s
         if (!map.has(key)) {
-          map.set(key, { name: s, postId: [] })  
+          map.set(key, { name: s, postList: [] })  
         }
-        map.get(key).postId.push(node.id)
+        map.get(key).postList.push({ 
+          id: node.id,  
+          title: node.title,
+          content: node.content
+        })
       })
     })
-    console.log(map)
-  //   const idList = []
-  //   data.allMarkdownPost.edges.forEach(({ node }) => {
-  //     idList.push(node.id)
-  //   })
-  //   createPage({
-  //     path: `/myindex`,
-  //     component: './src/templates/index.vue',
-  //     context: {
-  //       idList
-  //     }
-  //   })
+
+    for (const [key, value] of map) {
+      let path = key
+                .split('/')
+                .map(s => encodeURI(s.replace(/ /g, '-')))
+                .join('/')
+      console.log(path)
+      createPage({
+        path,
+        component: './src/templates/index.vue',
+        context: {
+          data: value,
+        }
+      })      
+    }
   })
 }

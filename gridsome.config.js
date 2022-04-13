@@ -5,6 +5,8 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 module.exports = {
   siteName: 'ZEROST\'s Blog',
+  siteUrl: 'https://blog.zerost.com',
+  pathPrefix: '/',  
   plugins: [
     {
       use: '@gridsome/source-filesystem',
@@ -22,7 +24,25 @@ module.exports = {
               id: 'G-XPCYCBEZ7Y',
           },
       },
-  },
+    },
+    {
+      use: '@gridsome/plugin-sitemap',
+      options: {
+        exclude: ['/exclude-me'],
+        config: {
+          '/ko/**': {
+            changefreq: 'weekly',
+            priority: 0.5,
+            lastmod: '2022-04-12',
+          },
+          '/about': {
+            changefreq: 'monthly',
+            priority: 0.7,
+            lastmod: '2022-04-12',
+          }
+        }
+      }
+    }
   ],
   templates: {
     markdownPost: [
@@ -53,7 +73,4 @@ module.exports = {
       ]
     }
   },
-  //deploy
-  siteUrl: 'blog.zerost.com',
-  pathPrefix: '/',
 }

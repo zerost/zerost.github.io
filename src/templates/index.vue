@@ -1,31 +1,17 @@
 <script setup>
-//console.log($)
+//console.log($page)
 </script>
 
 
 <template>
-  <div>
+  <Layout>
     <!-- <h1 v-html="$page.markdownPost.title" />
     <div v-html="$page.markdownPost.content" /> -->
-  </div>
+    <ul>
+      <li v-for="(obj, index) in $context.data.postList" :key="index">
+        <div>{{ obj.title }}</div>
+        <div>{{ obj.content.replace(/(<([^>]+)>)/gi, '') }}</div>
+      </li>
+    </ul>
+  </Layout>
 </template>
-
-<!--
-<page-query>
-query ($idList: [ID!]) {
-  allMarkdownPost(filter: { 
-    id: { 
-      in: $idList
-    } 
-  }) 
-  {
-    edges {
-      node {
-        id
-        title
-      }
-    }
-  }
-}
-</page-query>
--->
