@@ -1,11 +1,8 @@
-<script setup>
-</script>
-
 <template>
   <Layout>
     <!-- Learn how to use images here: https://gridsome.org/docs/images -->
     <h2 class="subtitle">Zerost's Programming Notes</h2>
-    <div v-for="(obj, index) in $page.allMarkdownPost.edges" :key="index">
+    <div v-for="(obj, index) in $page.posts.edges" :key="index">
       <a :href="`/${obj.node.lang}/posts/${obj.node.category.map((s) => encodeURI(s.replace(/ /g, '-'))).join('/')}/${obj.node.title.replace(/ /g, '-')}`">
         <h3 class="title">{{ obj.node.title }}</h3>
       </a>
@@ -18,20 +15,34 @@
   </Layout>
 </template>
 
-<script>
-export default {
-  metaInfo: {
-    title: 'Zerost programming notes',
-    htmlAttrs: {
-      lang: 'ko'
+<page-query>
+query {
+  posts: allMarkdownPost(sort: [{by: "date", order: DESC}], limit: 5) {
+    edges {
+      node {
+        id
+        title
+        content
+        lang
+        category
+        date
+      }
+    }
+  }
+  menu: allMarkdownPost(sort: [{by: "category", order: DESC}]) {
+    edges {
+      node {
+        category
+        lang
+      }
     }
   }
 }
-</script>
+</page-query>
 
-<page-query>
+<static-query>
 query {
-  allMarkdownPost {
+  allMarkdownPost(sort: [{by: "date", order: DESC}]) {
     edges {
       node {
         id
@@ -44,7 +55,8 @@ query {
     }
   }
 }
-</page-query>
+</static-query>
+
 
 <style lang="scss" scoped>
 .subtitle {

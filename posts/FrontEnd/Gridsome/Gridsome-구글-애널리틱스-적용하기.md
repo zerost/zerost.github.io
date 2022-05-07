@@ -1,10 +1,10 @@
 ---
 title: Gridsome 구글 애널리틱스 적용하기
 date: 2022-04-17 23:42:00
-tags: ['Gridsome', '구글애널리틱스', 'GoogleAnalytics', 'analytics']
 category: ['FrontEnd', 'Gridsome']
 lang: ko
 ---
+<!-- tags: ['Gridsome', '구글애널리틱스', 'GoogleAnalytics', 'analytics']-->
 # 배경
 구글 애널리틱스를 적용하게 되면 사이트에 몇명이 방문하는지, 어떤 경로로, 어떤 검색어로 찾아오는지 알 수 있다.
 뭐 신생 블로그다 보니까 당연히 들어오는 사람도 없겠지만, 언젠가는 내가 쓴 글이 다른사람에게 도움이 될 수 도 있는 것이라고 생각한다.  

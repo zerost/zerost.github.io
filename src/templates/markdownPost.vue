@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
   <Layout>
     <section class="post-info">

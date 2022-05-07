@@ -1,10 +1,10 @@
 ---
 title: 블로그를 Gridsome을 선택한 이유
 date: 2022-04-14 16:21:00
-tags: ['Gridsome', 'vue3', 'vuejs']
 category: ['FrontEnd', 'Gridsome']
 lang: ko
 ---
+<!-- tags: ['Gridsome', 'vue3', 'vuejs'] -->
 # 배경
 [블로그를 시작한 이유와 목표](/ko/posts/blog/에세이/블로그를-시작한-이유와-목표)에서 작성했듯이 블로그를 운영하고 싶었고,정적인 사이트를 개발해서 [github pages](https://pages.github.com/)에 배포를 하고 싶었다. 이걸 사용함으로서 비용도 없고 원하는데로 사이트를 구성 할수도 있었을 줄 알았다.
 

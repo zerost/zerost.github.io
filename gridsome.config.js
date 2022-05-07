@@ -33,12 +33,12 @@ module.exports = {
           '/ko/**': {
             changefreq: 'weekly',
             priority: 0.5,
-            lastmod: '2022-04-12',
+            lastmod: '2022-05-07',
           },
           '/about': {
             changefreq: 'monthly',
             priority: 0.7,
-            lastmod: '2022-04-12',
+            lastmod: '2022-04-18',
           }
         }
       }

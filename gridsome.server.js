@@ -41,7 +41,8 @@ module.exports = function (api) {
         map.get(key).postList.push({ 
           id: node.id,  
           title: node.title,
-          content: node.content
+          content: node.content,
+          category: node.category
         })
       })
     })
