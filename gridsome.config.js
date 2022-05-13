@@ -42,6 +42,16 @@ module.exports = {
           }
         }
       }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'blog/**/*.md',
+        typeName: 'Post',
+        remark: {
+          // remark options
+        }
+      }
     }
   ],
   templates: {

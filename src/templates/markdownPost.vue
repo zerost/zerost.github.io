@@ -6,7 +6,7 @@
       <div>카테고리: {{ $page.markdownPost.category.join("/") }}</div>
     </section>
     <div>
-      <main v-html="$page.markdownPost.content" />
+      <div v-html="$page.markdownPost.content" />
     </div>
   </Layout>
 </template>

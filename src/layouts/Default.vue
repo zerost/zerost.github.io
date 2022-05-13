@@ -102,7 +102,7 @@ export default {
 </script>
 
 
-<style>
+<style lang="scss">
 .layout {
   max-width: 1200px;
   margin: 0 auto;
@@ -169,6 +169,14 @@ html {
 
       main {
         flex-grow: 1;
+        max-width: calc(1200px - 15rem);
+        overflow: hidden;
+
+        img {
+          width: auto;
+          max-width: calc(100% - 2px);
+          border: 1px solid #ccc;
+        }
       }      
     }
 
