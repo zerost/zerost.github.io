@@ -46,21 +46,42 @@ Content-Location: /existing.html
 @RestController
 @RequestMapping("/api")
 class PutApiController {
-    //비추천
+
+    //비추천 - @PutMapping 사용
     @RequestMapping(method = [RequestMethod.PUT], path = ["/request-mapping"])
     fun requestMapping(): String{
         return "request-mapping - put method"
     }
 
+
     //추천
     @PutMapping("/put-mapping")
-    fun putMapping(): String {
-        return "put-mapping"
+    fun putMapping(@RequestBody svcDto: UserRequestDto): UserResponseDto {
+        return UserResponseDto().apply {
+            this.result = ResultDto().apply {
+                this.resultCode = "OK"
+                this.resultMessage = "성공"
+            }
+        }.apply {
+            this.description = "~~~~~~~~~~~~~~"
+        }.apply {
+            this.userList.add(svcDto)
+
+            this.userList.add(UserRequestDto().apply {
+                this.name = "Steve"
+                this.age = 22
+            })
+
+            this.userList.add(UserRequestDto().apply {
+                this.name = "Ah~~~~"
+                this.age = 18
+            })
+        }
     }
 }
 ```
 
-## Dto
+## Dto - UserRequestDto
 ```Kotlin
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 //@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class) //deprecated
@@ -73,9 +94,30 @@ data class UserRequestDto(
 ```
 
 
+## Dto - UserResponseDto
+```Kotlin
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
+//@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class) //deprecated
+data class UserResponseDto(
+    var result:ResultDto?=null,
+    var description:String?=null,
+
+    @JsonProperty("user")
+    var userList: MutableList<UserRequestDto> = mutableListOf(),
+)
+
+
+data class ResultDto (
+    var resultCode: String ?= null,
+    var resultMessage: String ?= null,
+)
+```
+
+
 
 
 # 출처
-PUT의 개념, 예제 - https://developer.mozilla.org/ko/docs/Web/HTTP/Methods/PUT  
-멱등성 - https://developer.mozilla.org/ko/docs/Glossary/Idempotent
-PropertyNamingStrategies.SnakeCaseStrategy::class - https://zzang9ha.tistory.com/380
+- PUT의 개념, 예제 - https://developer.mozilla.org/ko/docs/Web/HTTP/Methods/PUT  
+- 멱등성 - https://developer.mozilla.org/ko/docs/Glossary/Idempotent  
+- PropertyNamingStrategies.SnakeCaseStrategy::class - https://zzang9ha.tistory.com/380  
+- 인프런: 스프링부트-코틀린 - https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EC%BD%94%ED%8B%80%EB%A6%B0
